@@ -44,21 +44,9 @@ const Manga = sequelize.define(
   }
 );
 
-/* GET users listing. */
-mangaRouter.get("/get", function (req, res, next) {
-  res.send("respond with a resource");
-});
+const mangaCRUD = async () => {
+  console.log(await Manga.findAll());
+  console.log(await Manga.create({ name: "hello" }));
+};
 
-mangaRouter.post("/add", function (req, res, next) {
-  res.send("respond with a resource");
-});
-
-mangaRouter.patch("/update", function (req, res, next) {
-  res.send("respond with a resource");
-});
-
-mangaRouter.delete("/delete", function (req, res, next) {
-  res.send("respond with a resource");
-});
-
-module.exports = { mangaRouter, Manga };
+module.exports = { mangaCRUD, Manga };

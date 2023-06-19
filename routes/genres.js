@@ -24,19 +24,9 @@ const Genres = sequelize.define(
   }
 );
 
-/* GET users listing. */
-// genresRouter.get("/get", Genres.findAll());
+const genresCRUD = async () => {
+  console.log(await Genres.findAll());
+  console.log(await Authors.create({ name: "жанр" }));
+};
 
-// genresRouter.post("/add", function (req, res, next) {
-//   res.send("respond with a resource");
-// });
-
-// genresRouter.patch("/update", function (req, res, next) {
-//   res.send("respond with a resource");
-// });
-
-// genresRouter.delete("/delete", function (req, res, next) {
-//   res.send("respond with a resource");
-// });
-
-module.exports = { genresRouter, Genres };
+module.exports = { genresCRUD, Genres };

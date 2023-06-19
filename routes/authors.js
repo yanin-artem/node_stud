@@ -32,25 +32,11 @@ const Authors = sequelize.define(
   }
 );
 
-/* GET users listing. */
-authorsRouter.get("/authors", function (req, res) {
-  //   const authors = await Authors.findAll();
-  //   console.log("authors");
-  //   res.write(authors);
-  res.render("index", { title: "Express" });
-});
-// authorsRouter.get()
+const authorsCRUD = async () => {
+  console.log(await Authors.findAll());
+  console.log(
+    await Authors.create({ first_name: "hello", last_name: "world" })
+  );
+};
 
-// authorsRouter.post("/add", function (req, res, next) {
-//   res.send("respond with a resource");
-// });
-
-// authorsRouter.patch("/update", function (req, res, next) {
-//   res.send("respond with a resource");
-// });
-
-// authorsRouter.delete("/delete", function (req, res, next) {
-//   res.send("respond with a resource");
-// });
-
-module.exports = { authorsRouter, Authors };
+module.exports = { authorsCRUD, Authors };

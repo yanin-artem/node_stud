@@ -24,21 +24,9 @@ const ProductionTypes = sequelize.define(
   }
 );
 
-/* GET users listing. */
-production_typesRouter.get("/get", function (req, res, next) {
-  res.send("respond with a resource");
-});
+const production_typesCRUD = async () => {
+  console.log(await ProductionTypes.findAll());
+  console.log(await ProductionTypes.create({ name: "hello" }));
+};
 
-production_typesRouter.post("/add", function (req, res, next) {
-  res.send("respond with a resource");
-});
-
-production_typesRouter.patch("/update", function (req, res, next) {
-  res.send("respond with a resource");
-});
-
-production_typesRouter.delete("/delete", function (req, res, next) {
-  res.send("respond with a resource");
-});
-
-module.exports = { production_typesRouter, ProductionTypes };
+module.exports = { production_typesCRUD, ProductionTypes };

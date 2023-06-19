@@ -34,21 +34,9 @@ const Partners = sequelize.define(
   }
 );
 
-/* GET users listing. */
-partnersRouter.get("/get", function (req, res, next) {
-  res.send("respond with a resource");
-});
+const partnersCRUD = async () => {
+  console.log(await Partners.findAll());
+  console.log(await Partners.create({ manga: 1, related_products: 1 }));
+};
 
-partnersRouter.post("/add", function (req, res, next) {
-  res.send("respond with a resource");
-});
-
-partnersRouter.patch("/update", function (req, res, next) {
-  res.send("respond with a resource");
-});
-
-partnersRouter.delete("/delete", function (req, res, next) {
-  res.send("respond with a resource");
-});
-
-module.exports = { partnersRouter, Partners };
+module.exports = { partnersCRUD, Partners };

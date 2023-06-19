@@ -40,21 +40,9 @@ const RelatedProducts = sequelize.define(
   }
 );
 
-/* GET users listing. */
-related_productsRouter.get("/get", function (req, res, next) {
-  res.send("respond with a resource");
-});
+const related_productsCRUD = async () => {
+  console.log(await RelatedProducts.findAll());
+  console.log(await RelatedProducts.create({ name: "hello" }));
+};
 
-related_productsRouter.post("/add", function (req, res, next) {
-  res.send("respond with a resource");
-});
-
-related_productsRouter.patch("/update", function (req, res, next) {
-  res.send("respond with a resource");
-});
-
-related_productsRouter.delete("/delete", function (req, res, next) {
-  res.send("respond with a resource");
-});
-
-module.exports = { related_productsRouter, RelatedProducts };
+module.exports = { related_productsCRUD, RelatedProducts };
