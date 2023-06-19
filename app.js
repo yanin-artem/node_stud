@@ -5,10 +5,19 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
-var mangaRouter = require("./routes/manga");
-var related_productRouter = require("./routes/related_product");
+var { mangaRouter } = require("./routes/manga");
+var { related_productsRouter } = require("./routes/related_products");
+var { authorsRouter } = require("./routes/authors");
+var { genresRouter } = require("./routes/genres");
+var { partnersRouter } = require("./routes/partners");
+var { production_typesRouter } = require("./routes/production_types");
+const createDB = require("./DB");
 
 var app = express();
+
+(async () => {
+  await createDB();
+})();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -21,8 +30,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/manga", mangaRouter);
-app.use("/related_product", related_productRouter);
+// app.use("/manga", mangaRouter);
+app.use("/authors", authorsRouter);
+
+// app.use("/related_product", related_productRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

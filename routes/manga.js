@@ -1,21 +1,64 @@
 var express = require("express");
-var router = express.Router();
+var mangaRouter = express.Router();
+const { Sequelize, DataTypes } = require("sequelize");
+const sequelize = new Sequelize("sqlite::memory:");
+
+const Manga = sequelize.define(
+  "manga",
+  {
+    // Model attributes are defined here
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    author_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    genre_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    release_year: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    publisher_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+  },
+  {
+    tableName: "manga",
+    timestamps: true,
+  }
+);
 
 /* GET users listing. */
-router.get("/manga", function (req, res, next) {
+mangaRouter.get("/get", function (req, res, next) {
   res.send("respond with a resource");
 });
 
-router.post("/add_manga", function (req, res, next) {
+mangaRouter.post("/add", function (req, res, next) {
   res.send("respond with a resource");
 });
 
-router.patch("/update_manga", function (req, res, next) {
+mangaRouter.patch("/update", function (req, res, next) {
   res.send("respond with a resource");
 });
 
-router.delete("/delete_manga", function (req, res, next) {
+mangaRouter.delete("/delete", function (req, res, next) {
   res.send("respond with a resource");
 });
 
-module.exports = router;
+module.exports = { mangaRouter, Manga };
