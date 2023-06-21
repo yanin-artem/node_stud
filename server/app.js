@@ -19,7 +19,17 @@ app.listen(3000, async () => {
 });
 
 io.on("connection", (socket) => {
-  console.log("подключен килент", socket);
+  socket.emit("connection", {
+    message: "Все кул",
+  });
+
+  socket.on("message", (arg) => {
+    console.log(arg);
+  });
+
+  socket.on("disconnect", (reason) => {
+    console.log(reason);
+  });
 });
 
 httpServer.listen(3001);

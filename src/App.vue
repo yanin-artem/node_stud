@@ -9,6 +9,9 @@ import HelloWorld from "./components/HelloWorld.vue";
 const { io } = require("socket.io-client");
 // eslint-disable-next-line
 const socket = io("http://localhost:3001");
+socket.on("connection", (arg) => {
+  console.log(arg);
+});
 export default {
   name: "App",
   components: {
