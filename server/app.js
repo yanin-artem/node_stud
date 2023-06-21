@@ -19,12 +19,9 @@ app.listen(3000, async () => {
 });
 
 io.on("connection", (socket) => {
-  socket.emit("connection", {
-    message: "Все кул",
-  });
-
-  socket.on("message", (arg) => {
-    console.log(arg);
+  socket.on("message", (data) => {
+    socket.join("room:" + data.room_id);
+    io.to("room:" + data.room_id).emit("message", data.message);
   });
 
   socket.on("disconnect", (reason) => {
