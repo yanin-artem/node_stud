@@ -21,7 +21,10 @@ app.listen(3000, async () => {
 io.on("connection", (socket) => {
   socket.on("message", (data) => {
     socket.join("room:" + data.room_id);
-    io.to("room:" + data.room_id).emit("message", data.message);
+    io.to("room:" + data.room_id).emit("message", {
+      message: data.message,
+      chatMembersCount: io.engine.clientsCount,
+    });
   });
 
   socket.on("disconnect", (reason) => {
