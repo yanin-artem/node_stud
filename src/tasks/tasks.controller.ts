@@ -18,7 +18,6 @@ import {
   ApiOperation,
   ApiQuery,
   ApiResponse,
-  ApiHeaders,
   ApiHeader,
 } from '@nestjs/swagger';
 import { Task } from './entities/task.entity';

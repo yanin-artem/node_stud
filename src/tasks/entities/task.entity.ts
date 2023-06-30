@@ -21,6 +21,6 @@ export class Task {
     nullable: true,
     type: Comment,
   })
-  @OneToMany((type) => Comment, (comment) => comment.task)
+  @OneToMany(() => Comment, (comment) => comment.task)
   comment: Comment[];
 }

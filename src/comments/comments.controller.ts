@@ -11,14 +11,7 @@ import {
 import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
-import {
-  ApiTags,
-  ApiOperation,
-  ApiQuery,
-  ApiResponse,
-  ApiHeaders,
-  ApiHeader,
-} from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiQuery, ApiResponse } from '@nestjs/swagger';
 import { Comment } from './entities/comment.entity';
 
 @ApiTags('comments')

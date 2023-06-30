@@ -1,21 +1,16 @@
-import { AppService } from './app.service';
 import {
   Controller,
   UseGuards,
   Post,
   Body,
-  Patch,
-  Param,
-  Delete,
   Request,
-  Get,
   HttpStatus,
 } from '@nestjs/common';
 import { CreateUserDto } from './users/dto/create-user.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from 'src/auth/auth.service';
 import { UsersService } from './users/users.service';
-import { ApiTags, ApiOperation, ApiQuery, ApiResponse } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { User } from './users/entities/user.entity';
 import { JwtModule } from '@nestjs/jwt';
 
