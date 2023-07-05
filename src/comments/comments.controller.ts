@@ -8,12 +8,15 @@ import {
   Delete,
   HttpStatus,
   ParseIntPipe,
+  UseInterceptors,
+  UploadedFile,
 } from '@nestjs/common';
 import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 import { UpdateCommentDto } from './dto/update-comment.dto';
 import { ApiTags, ApiOperation, ApiQuery, ApiResponse } from '@nestjs/swagger';
 import { Comment } from './entities/comment.entity';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @ApiTags('comments')
 @Controller('comments')
@@ -90,5 +93,11 @@ export class CommentsController {
   @Delete(':id')
   remove(@Param('id', ParseIntPipe) id: string) {
     return this.commentsService.remove(+id);
+  }
+
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('file'))
+  uploadFile(@UploadedFile() file: Express.Multer.File) {
+    console.log(file);
   }
 }
