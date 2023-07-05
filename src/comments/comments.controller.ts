@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   HttpStatus,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { CommentsService } from './comments.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
@@ -58,7 +59,7 @@ export class CommentsController {
   @ApiResponse({ status: HttpStatus.OK, description: 'Success', type: Comment })
   @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Bad Request' })
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseIntPipe) id: string) {
     return this.commentsService.findOne(+id);
   }
 
@@ -71,7 +72,10 @@ export class CommentsController {
   @ApiResponse({ status: HttpStatus.OK, description: 'Success', type: Comment })
   @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Bad Request' })
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCommentDto: UpdateCommentDto) {
+  update(
+    @Param('id', ParseIntPipe) id: string,
+    @Body() updateCommentDto: UpdateCommentDto,
+  ) {
     return this.commentsService.update(+id, updateCommentDto);
   }
 
@@ -84,7 +88,7 @@ export class CommentsController {
   @ApiResponse({ status: HttpStatus.OK, description: 'Success', type: Comment })
   @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Bad Request' })
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id', ParseIntPipe) id: string) {
     return this.commentsService.remove(+id);
   }
 }

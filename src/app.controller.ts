@@ -5,14 +5,20 @@ import {
   Body,
   Request,
   HttpStatus,
+  UsePipes,
 } from '@nestjs/common';
-import { CreateUserDto } from './users/dto/create-user.dto';
+import {
+  CreateLoginSchema,
+  CreateUserDto,
+  CreateUserSchema,
+} from './users/dto/create-user.dto';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from 'src/auth/auth.service';
 import { UsersService } from './users/users.service';
 import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { User } from './users/entities/user.entity';
 import { JwtModule } from '@nestjs/jwt';
+import { JoiValidationPipe } from './pipes/ValidationPipe';
 
 @ApiTags('auth')
 @Controller()
@@ -27,6 +33,7 @@ export class AppController {
   @ApiResponse({ status: HttpStatus.OK, description: 'Success', type: User })
   @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Bad Request' })
   @Post('auth/register')
+  @UsePipes(new JoiValidationPipe(CreateUserSchema))
   register(@Body() createUserDto: CreateUserDto) {
     return this.usersService.register(createUserDto);
   }
@@ -41,6 +48,7 @@ export class AppController {
   @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'Bad Request' })
   @UseGuards(AuthGuard('local'))
   @Post('auth/login')
+  @UsePipes(new JoiValidationPipe(CreateLoginSchema))
   async login(@Request() req) {
     return this.authService.login(req.user);
   }
