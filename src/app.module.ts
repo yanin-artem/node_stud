@@ -13,6 +13,8 @@ import { CommentsModule } from './comments/comments.module';
 import { AuthModule } from './auth/auth.module';
 import { FileModule } from './file/file.module';
 import { File } from './file/entities/file.entity';
+import { ModerationModule } from './moderation/moderation.module';
+import { BullModule } from '@nestjs/bull';
 
 @Module({
   imports: [
@@ -27,11 +29,18 @@ import { File } from './file/entities/file.entity';
       entities: [User, Task, Comment, File],
       synchronize: true,
     }),
+    BullModule.forRoot({
+      redis: {
+        host: 'localhost',
+        port: 6379,
+      },
+    }),
     UsersModule,
     TasksModule,
     CommentsModule,
     AuthModule,
     FileModule,
+    ModerationModule
   ],
   controllers: [AppController],
   providers: [AppService],
