@@ -3,16 +3,12 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @ObjectType()
 @Entity()
-export class Comment {
+export class Category {
   @PrimaryGeneratedColumn()
-  @Field((type) => Int)
+  @Field(type => Int)
   id: number;
 
   @Column()
   @Field({ nullable: false })
   name: string;
-
-  @Column()
-  @Field({ nullable: false })
-  body: string;
 }
