@@ -94,10 +94,4 @@ export class CommentsController {
   remove(@Param('id', ParseIntPipe) id: string) {
     return this.commentsService.remove(+id);
   }
-
-  @Post('upload')
-  @UseInterceptors(FileInterceptor('file'))
-  uploadFile(@UploadedFile() file: Express.Multer.File) {
-    console.log(file);
-  }
 }

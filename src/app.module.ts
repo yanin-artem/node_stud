@@ -11,6 +11,8 @@ import { UsersModule } from './users/users.module';
 import { TasksModule } from './tasks/tasks.module';
 import { CommentsModule } from './comments/comments.module';
 import { AuthModule } from './auth/auth.module';
+import { FileModule } from './file/file.module';
+import { File } from './file/entities/file.entity';
 
 @Module({
   imports: [
@@ -22,13 +24,14 @@ import { AuthModule } from './auth/auth.module';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DBNAME,
-      entities: [User, Task, Comment],
+      entities: [User, Task, Comment, File],
       synchronize: true,
     }),
     UsersModule,
     TasksModule,
     CommentsModule,
     AuthModule,
+    FileModule,
   ],
   controllers: [AppController],
   providers: [AppService],
