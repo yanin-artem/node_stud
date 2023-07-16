@@ -6,6 +6,7 @@ import {
   Request,
   HttpStatus,
   UsePipes,
+  Get,
 } from '@nestjs/common';
 import {
   CreateLoginSchema,
@@ -36,6 +37,11 @@ export class AppController {
   @UsePipes(new JoiValidationPipe(CreateUserSchema))
   register(@Body() createUserDto: CreateUserDto) {
     return this.usersService.register(createUserDto);
+  }
+
+  @Get()
+  hello() {
+    return 'Hello World!';
   }
 
   @ApiOperation({ summary: 'Авторизация пользователя' })

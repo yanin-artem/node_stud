@@ -11,8 +11,6 @@ import { UsersModule } from './users/users.module';
 import { TasksModule } from './tasks/tasks.module';
 import { CommentsModule } from './comments/comments.module';
 import { AuthModule } from './auth/auth.module';
-import { FileModule } from './file/file.module';
-import { File } from './file/entities/file.entity';
 import { ModerationModule } from './moderation/moderation.module';
 import { BullModule } from '@nestjs/bull';
 
@@ -26,7 +24,7 @@ import { BullModule } from '@nestjs/bull';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DBNAME,
-      entities: [User, Task, Comment, File],
+      entities: [User, Task, Comment],
       synchronize: true,
     }),
     BullModule.forRoot({
@@ -39,8 +37,7 @@ import { BullModule } from '@nestjs/bull';
     TasksModule,
     CommentsModule,
     AuthModule,
-    FileModule,
-    ModerationModule
+    ModerationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
